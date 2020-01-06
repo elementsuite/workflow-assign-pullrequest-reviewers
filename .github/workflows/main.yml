@@ -1,0 +1,23 @@
+name: Pull Request Review Assigner
+
+on:
+  pull_request:
+    types: [opened,edited,reopened,synchronize]
+
+jobs:
+  pr_reviewer_assignment_job:
+    runs-on: ubuntu-latest
+    name: A job to assign reviewers based on provided configuration
+    steps:
+    - name: Action Step
+      id: prreviewer
+      uses: Samuel1989/actions-pr-review-assigner@master
+      with:
+        groups:
+          -
+            pay:
+              -
+                fix:
+                  - Samuel1989
+                feature:
+                  - Samuel1989

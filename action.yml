@@ -1,0 +1,5 @@
+name: 'Pull Request Review Assigner'
+description: 'A job to assign reviewers based on provided configuration'
+runs:
+  using: 'node12'
+  main: 'index.js'
