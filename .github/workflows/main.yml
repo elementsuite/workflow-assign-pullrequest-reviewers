@@ -14,10 +14,4 @@ jobs:
       uses: Samuel1989/actions-pr-review-assigner@master
       with:
         groups:
-          -
-            pay:
-              -
-                fix:
-                  - Samuel1989
-                feature:
-                  - Samuel1989
+          pay: 'hello'
