@@ -13,4 +13,6 @@ jobs:
       id: prreviewer
       uses: Samuel1989/actions-pr-review-assigner@master
       with:
-        groups: '{"pay":{"fix": [],"feature": []}}'
+        groups: '{"pay":{"fix": ["Samuel1989"],"feature": ["Samuel1989"]}}'
+        title-regex: '^(hr|engage|recruit|core|pay|work|perform|learn|analytics)\/(feature|fix)\/*(.+)$'
+        title-split-chara: '/'
