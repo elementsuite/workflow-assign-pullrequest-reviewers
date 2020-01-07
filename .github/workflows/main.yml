@@ -13,9 +13,4 @@ jobs:
       id: prreviewer
       uses: Samuel1989/actions-pr-review-assigner@master
       with:
-        groups: `{
-        	"pay": {
-        		"fix": [],
-        		"feature": []
-        	}
-        }`
+        groups: '{"pay":{"fix": [],"feature": []}}'
