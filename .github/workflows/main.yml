@@ -16,3 +16,4 @@ jobs:
         groups: '{"pay":{"fix": ["Samuel1989"],"feature": ["Samuel1989"]}}'
         title-regex: '^(hr|engage|recruit|core|pay|work|perform|learn|analytics)\/(feature|fix)\/*(.+)$'
         title-split-chara: '/'
+        github-token: "${{ secrets.GITHUB_TOKEN }}"
