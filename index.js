@@ -31,7 +31,7 @@ try {
   var reviewers = groups[module][type];
 
   if (reviewers && reviewers.length) {
-    addReview(client, pullRequest, reviewers)
+    requestReview(client, pullRequest, reviewers)
   }
 
 
