@@ -35,18 +35,15 @@ async function run() {
       pull_number: pullRequest.number
     });
 
-    console.log('commits', files);
-
-    /*if (commits && commits.data.length) {
-      for (var i = 0; i < commits.data.length; i++) {
-        var commit = await client.git.getCommit({
-          owner: pullRequest.owner,
-          repo: pullRequest.repo,
-          commit_sha: commits.data[i].sha
-        });
-        console.log('commit', commit);
+    if (files && files.data.length) {
+      for (var i = 0; i < files.data.length; i++) {
+        var file = files.data[i];
+        var extension = file.filename.substr(file.filename.lastIndexOf('.') + 1);
+        if (['less', 'css', 'sass', 'md'].includes(extension)) {
+          console.log("add design guys");
+        }
       }
-    }*/
+    }
 
     /*console.log("adding await", commits);
 
