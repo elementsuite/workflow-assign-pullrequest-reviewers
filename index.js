@@ -29,7 +29,13 @@ try {
   const author = payload.pull_request.user.login;
   const commits = github.event.commits;
 
-  console.log('commits', commits);
+  client.pulls.listCommits({
+    owner: pullRequest.owner,
+    repo: pullRequest.repo,
+    pull_number: pullRequest.number
+  }).then(function(result) {
+    console.log('commits', result);
+  });
 
   if (!new RegExp(titleRegex).test(title)) {
     return;
