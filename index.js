@@ -27,6 +27,9 @@ try {
   const pullRequest = github.context.issue;
   const title = payload.pull_request.title;
   const author = payload.pull_request.user.login;
+  const commits = github.event.commits;
+
+  console.log('commits', commits);
 
   if (!new RegExp(titleRegex).test(title)) {
     return;
