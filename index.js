@@ -51,6 +51,7 @@ async function run() {
         var extension = file.filename.substr(file.filename.lastIndexOf('.') + 1);
         if (['less', 'css', 'sass'].includes(extension)) {
           reviewers.concat(groups.designers);
+          break;
         }
       }
     }
