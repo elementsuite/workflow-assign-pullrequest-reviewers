@@ -1,7 +1,11 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-var requestReview = function(client, pullRequest, reviewers) {
+var requestReview = function(client, pullRequest, reviewers, fallbacks) {
+  if (reviewers.includes(pullRequest.owner)) {
+    reviewers.splice( reviewers.indexOf(pullRequest.owner), 1);
+    reviewers.concat(fallbacks);
+  }
   client.pulls.createReviewRequest({
     owner: pullRequest.owner,
     repo: pullRequest.repo,
@@ -20,8 +24,6 @@ try {
   const pullRequest = github.context.issue;
   const title = payload.pull_request.title;
 
-  console.log('pull request', pullRequest);
-
   if (!new RegExp(titleRegex).test(title)) {
     return;
   }
@@ -33,7 +35,7 @@ try {
   var reviewers = groups[module][type];
 
   if (reviewers && reviewers.length) {
-    requestReview(client, pullRequest, reviewers)
+    requestReview(client, pullRequest, reviewers, groups.default)
   }
 } catch (error) {
   console.error(error.message);
