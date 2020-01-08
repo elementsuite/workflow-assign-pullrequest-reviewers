@@ -28,8 +28,6 @@ try {
   const title = payload.pull_request.title;
   const author = payload.pull_request.user.login;
 
-  console.log("payload", payload);
-
   if (!new RegExp(titleRegex).test(title)) {
     return;
   }
