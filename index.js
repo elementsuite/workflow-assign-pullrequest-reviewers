@@ -2,6 +2,9 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 var requestReview = function(client, pullRequest, reviewers, fallbacks) {
+  if (fallbacks.includes(pullRequest.owner)) {
+    fallbacks.splice( fallbacks.indexOf(pullRequest.owner), 1);
+  }
   if (reviewers.includes(pullRequest.owner)) {
     reviewers.splice( reviewers.indexOf(pullRequest.owner), 1);
     reviewers.concat(fallbacks);
