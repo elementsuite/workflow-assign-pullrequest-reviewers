@@ -39,7 +39,7 @@ async function run() {
 
     if (commits && commits.data.length) {
       for (var i = 0; i < commits.data.length; i++) {
-        var commit = await client.pulls.getCommit({
+        var commit = await client.git.getCommit({
           owner: pullRequest.owner,
           repo: pullRequest.repo,
           commit_sha: commits.data[i].sha
