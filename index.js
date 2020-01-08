@@ -29,15 +29,15 @@ async function run() {
     const title = payload.pull_request.title;
     const author = payload.pull_request.user.login;
 
-    let commits = await client.pulls.listCommits({
+    let files = await client.pulls.listFiles({
       owner: pullRequest.owner,
       repo: pullRequest.repo,
       pull_number: pullRequest.number
     });
 
-    console.log('commits', commits);
+    console.log('commits', files);
 
-    if (commits && commits.data.length) {
+    /*if (commits && commits.data.length) {
       for (var i = 0; i < commits.data.length; i++) {
         var commit = await client.git.getCommit({
           owner: pullRequest.owner,
@@ -46,7 +46,7 @@ async function run() {
         });
         console.log('commit', commit);
       }
-    }
+    }*/
 
     /*console.log("adding await", commits);
 
