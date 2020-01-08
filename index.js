@@ -28,13 +28,13 @@ try {
   const title = payload.pull_request.title;
   const author = payload.pull_request.user.login;
 
-  client.pulls.listCommits({
+  let commits = await client.pulls.listCommits({
     owner: pullRequest.owner,
     repo: pullRequest.repo,
     pull_number: pullRequest.number
-  }).then(function(result) {
-    console.log('commits', result);
   });
+
+  console.log("adding await", commits);
 
   if (!new RegExp(titleRegex).test(title)) {
     return;
