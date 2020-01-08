@@ -27,7 +27,6 @@ try {
   const pullRequest = github.context.issue;
   const title = payload.pull_request.title;
   const author = payload.pull_request.user.login;
-  const commits = github.event.commits;
 
   client.pulls.listCommits({
     owner: pullRequest.owner,
