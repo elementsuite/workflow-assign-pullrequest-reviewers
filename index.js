@@ -35,6 +35,18 @@ async function run() {
       pull_number: pullRequest.number
     });
 
+    if (commits && commits.data.length) {
+      for (var i = 0; i < commits.length; i++) {
+        var commit = await client.pulls.getCommit({
+          owner: pullRequest.owner,
+          repo: pullRequest.repo,
+          commit_sha: commits[i].sha
+        });
+        console.log('commit', commit);
+      }
+    }
+
+    return;
     console.log("adding await", commits);
 
     if (!new RegExp(titleRegex).test(title)) {
