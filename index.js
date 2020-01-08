@@ -1,12 +1,12 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 
-var requestReview = function(client, pullRequest, reviewers, fallbacks) {
-  if (fallbacks.includes(pullRequest.owner)) {
-    fallbacks.splice( fallbacks.indexOf(pullRequest.owner), 1);
+var requestReview = function(client, pullRequest, reviewers, fallbacks, author) {
+  if (fallbacks.includes(author)) {
+    fallbacks.splice( fallbacks.indexOf(author), 1);
   }
-  if (reviewers.includes(pullRequest.owner)) {
-    reviewers.splice( reviewers.indexOf(pullRequest.owner), 1);
+  if (reviewers.includes(author)) {
+    reviewers.splice( reviewers.indexOf(author), 1);
     reviewers.concat(fallbacks);
   }
   client.pulls.createReviewRequest({
@@ -26,6 +26,7 @@ try {
   const payload = github.context.payload;
   const pullRequest = github.context.issue;
   const title = payload.pull_request.title;
+  const author = payload.pull_request.user.login;
 
   console.log("payload", payload);
 
@@ -40,7 +41,7 @@ try {
   var reviewers = groups[module][type];
 
   if (reviewers && reviewers.length) {
-    requestReview(client, pullRequest, reviewers, groups.default)
+    requestReview(client, pullRequest, reviewers, groups.default, author)
   }
 } catch (error) {
   console.error(error.message);
