@@ -46,8 +46,7 @@ async function run() {
       }
     }
 
-    return;
-    console.log("adding await", commits);
+    /*console.log("adding await", commits);
 
     if (!new RegExp(titleRegex).test(title)) {
       return;
@@ -61,7 +60,7 @@ async function run() {
 
     if (reviewers && reviewers.length) {
       requestReview(client, pullRequest, reviewers, groups.default, author)
-    }
+    }*/
   } catch (error) {
     console.error(error.message);
   }
