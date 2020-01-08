@@ -27,6 +27,8 @@ try {
   const pullRequest = github.context.issue;
   const title = payload.pull_request.title;
 
+  console.log("payload", payload);
+
   if (!new RegExp(titleRegex).test(title)) {
     return;
   }
