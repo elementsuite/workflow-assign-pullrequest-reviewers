@@ -35,14 +35,14 @@ async function run() {
       pull_number: pullRequest.number
     });
 
-    console.log('commits', commit);
+    console.log('commits', commits);
 
     if (commits && commits.data.length) {
       for (var i = 0; i < commits.data.length; i++) {
         var commit = await client.pulls.getCommit({
           owner: pullRequest.owner,
           repo: pullRequest.repo,
-          commit_sha: commits[i].sha
+          commit_sha: commits.data[i].sha
         });
         console.log('commit', commit);
       }
