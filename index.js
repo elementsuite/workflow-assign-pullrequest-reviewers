@@ -29,24 +29,6 @@ async function run() {
     const title = payload.pull_request.title;
     const author = payload.pull_request.user.login;
 
-    let files = await client.pulls.listFiles({
-      owner: pullRequest.owner,
-      repo: pullRequest.repo,
-      pull_number: pullRequest.number
-    });
-
-    if (files && files.data.length) {
-      for (var i = 0; i < files.data.length; i++) {
-        var file = files.data[i];
-        var extension = file.filename.substr(file.filename.lastIndexOf('.') + 1);
-        if (['less', 'css', 'sass', 'md'].includes(extension)) {
-          console.log("add design guys");
-        }
-      }
-    }
-
-    /*console.log("adding await", commits);
-
     if (!new RegExp(titleRegex).test(title)) {
       return;
     }
@@ -57,9 +39,25 @@ async function run() {
 
     var reviewers = groups[module][type];
 
+    let files = await client.pulls.listFiles({
+      owner: pullRequest.owner,
+      repo: pullRequest.repo,
+      pull_number: pullRequest.number
+    });
+
+    if (files && files.data.length) {
+      for (var i = 0; i < files.data.length; i++) {
+        var file = files.data[i];
+        var extension = file.filename.substr(file.filename.lastIndexOf('.') + 1);
+        if (['less', 'css', 'sass'].includes(extension)) {
+          reviewers.concat(groups.designers);
+        }
+      }
+    }
+
     if (reviewers && reviewers.length) {
       requestReview(client, pullRequest, reviewers, groups.default, author)
-    }*/
+    }
   } catch (error) {
     console.error(error.message);
   }
