@@ -29,7 +29,7 @@ async function run() {
     const title = payload.pull_request.title;
     const author = payload.pull_request.user.login;
 
-    if (!new RegExp(titleRegex).test(title)) {
+    if (!new RegExp(titleRegex, 'i').test(title)) {
       return;
     }
 
